@@ -12,8 +12,8 @@ public class PaisService {
 		dao = new PaisDAO();
 	}
 	
-	public void criar(Pais to) throws Exception {
-		dao.incluir(to);
+	public int criar(Pais to) throws Exception {
+		return dao.incluir(to);
 	}
 	
 	public void atualizar(Pais to) {

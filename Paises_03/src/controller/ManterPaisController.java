@@ -41,13 +41,19 @@ public class ManterPaisController extends HttpServlet {
 		
 		PaisService service = new PaisService();
 		
+		
+		int id;
 		try {
-			service.criar(pais);
+			id = service.criar(pais);
+			
+			pais = service.carregar(id);
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		pais = service.carregar(pais.getId());
+		
+
 		
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>Cadastro realizado com sucesso!</title></head><body>");
