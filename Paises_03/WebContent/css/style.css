@@ -1,0 +1,23 @@
+/* @CHARSET "UTF-8"; */
+/*
+ * style.css
+ */
+main {
+  padding-top: 50px;
+}
+
+footer {
+  padding: 30px;
+}
+
+#info{
+  text-align: center;
+
+}
+
+#attr-p{
+  padding-left: 5%;
+}
+#btn-voltar{
+  padding-bottom: 45px;
+}
