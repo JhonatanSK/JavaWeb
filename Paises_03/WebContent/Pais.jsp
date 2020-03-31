@@ -31,6 +31,7 @@ pageEncoding="UTF-8"%>
 					  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 					</li>
 				  </ul>
+				 </div>
 			</nav>
 		</header>
 		<main class="container">
