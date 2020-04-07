@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,30 +13,10 @@
 
 	<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
 
-	
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-dark bg-primary">
-			<a class="navbar-brand" href="#">Sistema de Paises</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-			  <span class="navbar-toggler-icon"></span>
-			</button>
-		  
-			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-			  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active">
-				  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link" href="#">Link</a>
-				</li>
-				<li class="nav-item">
-				  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-				</li>
-			  </ul>
-			 </div>
-		</nav>
+		<c:import url="menu.jsp" />
 	</header>
 	
 	<main class="container">
@@ -49,7 +33,7 @@
 					<small class="form-text text-muted">Digite o número de habitantes desse país.</small>
 				  </div>
 				  <div class="form-group">
-					  <label >Área</label>
+					  <label >Área</label>
 					  <input type="text" name="area" class="form-control" >
 					  <small class="form-text text-muted">Digite a área desse país.</small>
 					</div>
@@ -62,7 +46,6 @@
 	<footer class="bg-light text-center">
 		<p class=" text-muted">@Sistema de Paises</p>
 	</footer>
-
 
 </body>
 </html>
