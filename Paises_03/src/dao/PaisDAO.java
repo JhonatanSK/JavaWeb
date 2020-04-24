@@ -15,158 +15,179 @@ public class PaisDAO {
 	public int incluir(Pais to) throws Exception {
 		int id = 0;
 		String sqlInsert = "INSERT INTO paises(nome, populacao, area) values (?,?,?)";
-	
-		
+
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
 			stm.setString(1, to.getNome());
 			stm.setLong(2, to.getPopulacao());
 			stm.setDouble(3, to.getArea());
 			stm.execute();
-			
-			try(ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")){
-				if (rs.next()) {				
+
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {
 					id = rs.getInt(1);
 				}
-			}
-			catch (SQLException ex) {
+				conn.close();
+			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
-		} 
-		catch(SQLException e) {
-			throw new Exception(e.getMessage());
+			return id;
 		}
-		return id;
 	}
-	
+
 	public void atualizar(Pais to) {
 		String sqlUpdate = "UPDATE paises SET nome = ?, populacao = ?, area = ? where id = ?";
-		
+
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
 			stm.setString(1, to.getNome());
 			stm.setLong(2, to.getPopulacao());
-			stm.setDouble(3, to.getArea());	
+			stm.setDouble(3, to.getArea());
 			stm.setInt(4, to.getId());
 			stm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void excluir(Pais to) {
 		String sqlDelete = "DELETE FROM paises where id = ?";
-		
+
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
 			stm.setInt(1, to.getId());
 			stm.execute();
-			
+
+			conn.close();	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 	public Pais buscar(int id) {
 		Pais to = new Pais();
 		String sqlSelect = "SELECT id, nome, populacao, area FROM paises WHERE id = ?";
-		
+
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, id);
 			try (ResultSet rs = stm.executeQuery();) {
-				if(rs.next()) {
+				if (rs.next()) {
 					to.setId(rs.getInt("id"));
 					to.setNome(rs.getString("nome"));
 					to.setPopulacao(rs.getLong("populacao"));
 					to.setArea(rs.getDouble("area"));
 				}
 
-			} catch(SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} catch(SQLException e1) {
+		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		
+
 		return to;
-				
+
 	}
-	
+
 	public Pais retornarMaiorHabitantes() {
 		Pais to = new Pais();
 		String sqlSelect = "Select id, nome, populacao, area FROM paises order by populacao desc limit 1";
-		
+
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			
+
 			try (ResultSet rs = stm.executeQuery();) {
-				if(rs.next()) {
+				if (rs.next()) {
 					to.setId(rs.getInt("id"));
 					to.setNome(rs.getString("nome"));
 					to.setPopulacao(rs.getLong("populacao"));
 					to.setArea(rs.getDouble("area"));
-				}
-				else {
+				} else {
 					to.setId(0);
 					to.setNome(null);
 					to.setPopulacao(0);
 					to.setArea(0);
 				}
-			} catch(SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} catch(SQLException e1) {
+		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		
+
 		return to;
-				
+
 	}
-	
+
 	public Pais retornarMenorArea() {
 		Pais to = new Pais();
 		String sqlSelect = "Select id, nome, populacao, area FROM paises order by area asc limit 1";
-		
+
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			
+
 			try (ResultSet rs = stm.executeQuery();) {
-				if(rs.next()) {
+				if (rs.next()) {
 					to.setId(rs.getInt("id"));
 					to.setNome(rs.getString("nome"));
 					to.setPopulacao(rs.getLong("populacao"));
 					to.setArea(rs.getDouble("area"));
-				}
-				else {
+				} else {
 					to.setId(0);
 					to.setNome(null);
 					to.setPopulacao(0);
 					to.setArea(0);
 				}
-			} catch(SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} catch(SQLException e1) {
+		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		
+
 		return to;
-				
+
 	}
-	
-	//método que retorna um vetor de 3 países.
+
+	// método que retorna um vetor de 3 países.
 
 	public ArrayList<Pais> retornarTresPaises() {
 		ArrayList<Pais> paises = new ArrayList<Pais>();
-		
-		for(int i = 0; i < 3; i++) {
+
+		for (int i = 0; i < 3; i++) {
 			int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do país: "));
 			paises.add(buscar(id));
 		}
+
+		return paises;
+	}
+	
+	public ArrayList<Pais> retornarTodosPaises() throws Exception {
+		ArrayList<Pais> paises = new ArrayList<Pais>();
+
+		String sqlSelect = "SELECT * FROM paises";
 		
+		try (Connection conn = ConnectionFactory.obtemConexao();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Pais to = new Pais(
+						rs.getInt("id"),
+						rs.getString("nome"),
+						rs.getLong("populacao"),
+						rs.getDouble("area")
+					);
+					paises.add(to);
+				}
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+
 		return paises;
 	}
 }
