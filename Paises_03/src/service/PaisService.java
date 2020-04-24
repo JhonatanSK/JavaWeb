@@ -44,4 +44,9 @@ public class PaisService {
 		return to;
 	}
 	
+	public ArrayList<Pais> carregarTodos() throws Exception {
+		ArrayList<Pais> to = dao.retornarTodosPaises();
+		return to;
+	}
+	
 }
