@@ -21,7 +21,7 @@
 	
 	<main class="container">
 		<div class="jumbotron bg-light border border-primary" >
-			<form action="ManterPais.do" method="POST">
+			<form action="ManterPais.do?acao=Criar" method="POST">
 				<div class="form-group">
 					<label >Nome </label>
 					<input type="text" name="nome" class="form-control">
@@ -33,9 +33,9 @@
 					<small class="form-text text-muted">Digite o número de habitantes desse país.</small>
 				  </div>
 				  <div class="form-group">
-					  <label >Área</label>
+					  <label >Area</label>
 					  <input type="text" name="area" class="form-control" >
-					  <small class="form-text text-muted">Digite a área desse país.</small>
+					  <small class="form-text text-muted">Digite a area desse país.</small>
 					</div>
 				  <button type="submit" class="btn btn-primary">Enviar</button>
 			</form>
