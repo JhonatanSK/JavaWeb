@@ -26,11 +26,11 @@
 		<div class="jumbotron bg-light border border-primary">
 			<p id="attr-p"> Id: ${pais.id}</p>
 			<p id="attr-p"> Nome: ${pais.nome}</p>
-			<p id="attr-p"> Área: ${pais.area}</p>
+			<p id="attr-p"> Area: ${pais.area}</p>
 			<p id="attr-p">	População: ${pais.populacao}</p>
 		</div>
 		<div id="btn-voltar">
-			<a type="button" href="index.jsp" class="btn btn-primary btn-lg">Voltar</a>
+			<a type="button" href="ListarPaises.jsp" class="btn btn-primary btn-lg">Voltar</a>
 		</div>
 	</main>
 
