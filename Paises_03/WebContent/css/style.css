@@ -21,3 +21,8 @@ footer {
 #btn-voltar{
   padding-bottom: 45px;
 }
+
+.menu__text{
+	color: #FFF;
+	font-family: sans-serif;
+}
