@@ -7,6 +7,7 @@
 
 	<div class="">
 		<ul class="nav">
+			<li class="nav-item"><a class="nav-link menu__text" href="Login.jsp">Login</a></li>
 			<li class="nav-item"><a class="nav-link active menu__text" href="index.jsp">Criar Paises</a></li>
 			<li class="nav-item"><a class="nav-link menu__text" href="/Paises/ListarPaises.do">Listar Paises</a></li>
 		</ul>
