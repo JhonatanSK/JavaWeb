@@ -22,7 +22,6 @@
 				<h2>Itens</h2>
 			</div>
 			<div class="col-sm-6">
-
 				<div class="input-group h2">
 					<input name="data[search]" class="form-control" id="search"
 						type="text" placeholder="Pesquisar Itens"> <span
@@ -35,12 +34,8 @@
 
 			</div>
 		</div>
-		<!-- /#top -->
-
-
 		<hr />
 		<div id="list" class="row">
-
 			<div class="table-responsive col-md-12">
 				<table class="table table-striped">
 					<thead>
@@ -60,9 +55,9 @@
 								<td>${pais.populacao}</td>
 								<td>${pais.area}</td>
 								<td class="actions">
-								<a class="btn btn-success btn-xs" href="ManterPais.do?acao=Visualizar&id=${pais.id}">Visualizar</a> 
-								<a class="btn btn-warning btn-xs" href="/Paises/ManterPais.do?acao=Editar&id=${pais.id}">Editar</a> 
-								<a class="btn btn-danger btn-xs" href="/Paises/ManterPais.do?acao=Excluir&id=${pais.id}" data-toggle="modal"
+								<a class="btn btn-success btn-xs" href="controller.do?command=VisualizarPais&id=${pais.id}">Visualizar</a> 
+								<a class="btn btn-warning btn-xs" href="/Paises/controller.do?command=EditarPais&id=${pais.id}">Editar</a> 
+								<a class="btn btn-danger btn-xs" href="/Paises/controller.do?command=ExcluirPais&id=${pais.id}" data-toggle="modal"
 									data-target="#delete-modal">Excluir</a></td>
 							</tr>
 						</c:forEach>
@@ -71,7 +66,5 @@
 			</div>
 		</div>
 	</div>
-
-
 </body>
 </html>
