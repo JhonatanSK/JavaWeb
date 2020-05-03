@@ -21,7 +21,7 @@
 	
 	<main class="container">
 		<div class="jumbotron bg-light border border-primary" >
-			<form action="ManterPais.do?acao=Criar" method="POST">
+			<form action="controller.do?command=CriarPais" method="POST">
 				<div class="form-group">
 					<label >Nome </label>
 					<input type="text" name="nome" class="form-control">
