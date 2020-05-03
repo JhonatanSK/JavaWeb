@@ -21,7 +21,7 @@
 	
 	<main class="container">
 		<div class="jumbotron bg-light border border-primary" >
-			<form action="ManterPais.do?acao=Alterar&id=${pais.id}" method="POST">
+			<form action="controller.do?command=AlterarPais&id=${pais.id}" method="POST">
 				<div class="form-group">
 					<label >Nome </label>
 					<input type="text" name="nome" class="form-control" value="${pais.nome}">
