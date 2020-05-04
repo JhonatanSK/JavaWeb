@@ -23,7 +23,7 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">Username:</label><br>
-                                <input type="email" name="username" id="username" class="form-control" maxlength="60" placeholder="E-mail" required>
+                                <input type="text" name="username" id="username" class="form-control" maxlength="60" placeholder="Username" required>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
