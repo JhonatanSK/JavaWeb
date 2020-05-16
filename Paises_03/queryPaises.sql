@@ -23,3 +23,7 @@ Select id, nome, populacao, area FROM paises order by area asc limit 1;
 
 SELECT * FROM paises WHERE paises.id = 1 or paises.id = 2 or paises.id = 3;
 
+create table user(
+username varchar(100),
+password varchar(100)
+);
