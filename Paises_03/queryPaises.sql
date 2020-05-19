@@ -2,28 +2,19 @@ create database SistemaPaises;
 use SistemaPaises;
 
 create table paises(
-id int auto_increment primary key,
-nome varchar (100), 
-populacao bigint,
-area numeric (15,2)
+	id int auto_increment primary key,
+	nome varchar (100), 
+	populacao bigint,
+	area numeric (15,2)
 );
-
-SELECT id, nome, populacao, area FROM paises WHERE id = 4;
-
-select * from paises;
-
-delete from paises where id > 6;
 
 insert into paises(nome, populacao, area) values ("Italia", 300000, 200.20);
 insert into paises(nome, populacao, area) values ("Japão", 300000, 200.20);
+insert into paises(nome, populacao, area) values ("Brasil", 400000, 200.20);
 
-Select id, nome, populacao, area FROM paises order by populacao desc limit 1;
+select * from paises;
 
-Select id, nome, populacao, area FROM paises order by area asc limit 1;
-
-SELECT * FROM paises WHERE paises.id = 1 or paises.id = 2 or paises.id = 3;
-
-create table user(
-username varchar(100),
-password varchar(100)
-);
+CREATE TABLE usuario (
+	username VARCHAR(100) NOT NULL,
+	password VARCHAR(100) NOT NULL,
+	PRIMARY KEY (username));
