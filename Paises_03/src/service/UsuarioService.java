@@ -7,4 +7,17 @@ public class UsuarioService {
 		UsuarioDAO dao = new UsuarioDAO();
 		return dao.validar(usuario);
 	}
+	
+	public int cadastrar(Usuario usuario){
+		UsuarioDAO dao = new UsuarioDAO();
+		try {
+			return dao.cadastrar(usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;			
+		
+	}
 }
+
+
