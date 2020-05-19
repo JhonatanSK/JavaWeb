@@ -7,6 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Login</title>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 </head>
@@ -19,7 +20,7 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="controller.do" method="post">
+                        <form id="login-form" class="form" action="controller.do?command=FazerLogin" method="post">
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">Username:</label><br>
@@ -29,11 +30,15 @@
                                 <label for="password" class="text-info">Password:</label><br>
                                 <input type="password" name="passwd" id="passwd" class="form-control" placeholder="Senha" required>
                             </div>
-                            <div class="row col-md-12">
-								<button type="submit" class="btn btn-primary" name="command"
-									value="FazerLogin">
-									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Ok
-								</button>
+                            <div style="display: flex; justify-content: space-between">
+	                            <div class="row col-md-8" >
+									<button type="submit" class="btn btn-primary">
+										<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Enviar
+									</button>
+								</div>
+								<div>
+									<p  style="margin-bottom: 0px; margin-top: 10px;">Não tem conta? <a style="color: #007bff; cursor: pointer;" href="registrar.jsp">Registre-se</a></p>
+								</div>
 							</div>
                         </form>
                     </div>
