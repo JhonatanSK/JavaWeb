@@ -40,8 +40,13 @@ public class PaisService {
 	}
 	
 	public ArrayList<Pais> retornarTresPaises() {
-		ArrayList<Pais> to = dao.retornarTresPaises();
-		return to;
+		try {
+			ArrayList<Pais> to = dao.retornarTresPaises();
+			return to;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public ArrayList<Pais> carregarTodos() throws Exception {
