@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
 
 import model.Pais;
 
@@ -16,7 +15,7 @@ public class PaisDAO {
 		int id = 0;
 		String sqlInsert = "INSERT INTO paises(nome, populacao, area) values (?,?,?)";
 
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obtemConexaoTest();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
 			stm.setString(1, to.getNome());
 			stm.setLong(2, to.getPopulacao());
@@ -38,7 +37,7 @@ public class PaisDAO {
 	public void atualizar(Pais to) {
 		String sqlUpdate = "UPDATE paises SET nome = ?, populacao = ?, area = ? where id = ?";
 
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obtemConexaoTest();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
 			stm.setString(1, to.getNome());
 			stm.setLong(2, to.getPopulacao());
@@ -53,7 +52,7 @@ public class PaisDAO {
 	public void excluir(Pais to) {
 		String sqlDelete = "DELETE FROM paises where id = ?";
 
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obtemConexaoTest();
 				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
 			stm.setInt(1, to.getId());
 			stm.execute();
@@ -68,7 +67,7 @@ public class PaisDAO {
 		Pais to = new Pais();
 		String sqlSelect = "SELECT id, nome, populacao, area FROM paises WHERE id = ?";
 
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obtemConexaoTest();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, id);
 			try (ResultSet rs = stm.executeQuery();) {
@@ -94,7 +93,7 @@ public class PaisDAO {
 		Pais to = new Pais();
 		String sqlSelect = "Select id, nome, populacao, area FROM paises order by populacao desc limit 1";
 
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obtemConexaoTest();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 
 			try (ResultSet rs = stm.executeQuery();) {
@@ -124,7 +123,7 @@ public class PaisDAO {
 		Pais to = new Pais();
 		String sqlSelect = "Select id, nome, populacao, area FROM paises order by area asc limit 1";
 
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obtemConexaoTest();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 
 			try (ResultSet rs = stm.executeQuery();) {
@@ -150,14 +149,30 @@ public class PaisDAO {
 
 	}
 
-	// método que retorna um vetor de 3 países.
-
-	public ArrayList<Pais> retornarTresPaises() {
+	
+	public ArrayList<Pais> retornarTresPaises() throws Exception {
 		ArrayList<Pais> paises = new ArrayList<Pais>();
 
-		for (int i = 0; i < 3; i++) {
-			int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do país: "));
-			paises.add(buscar(id));
+		String sqlSelect = "SELECT * FROM paises limit 3";
+		
+		try (Connection conn = ConnectionFactory.obtemConexaoTest();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Pais to = new Pais(
+						rs.getInt("id"),
+						rs.getString("nome"),
+						rs.getLong("populacao"),
+						rs.getDouble("area")
+					);
+					paises.add(to);
+				}
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 
 		return paises;
@@ -168,7 +183,7 @@ public class PaisDAO {
 
 		String sqlSelect = "SELECT * FROM paises";
 		
-		try (Connection conn = ConnectionFactory.obtemConexao();
+		try (Connection conn = ConnectionFactory.obtemConexaoTest();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {

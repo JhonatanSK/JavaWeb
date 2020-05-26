@@ -58,4 +58,40 @@ public class UsuarioDAO {
 		return id;
 	}
 	
+	public Usuario buscar(Usuario to) {
+		String sqlSelect = "SELECT username, password FROM usuario WHERE username = ?";
+
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setString(1, to.getUsername());
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					to.setUsername(rs.getString("username"));
+					to.setPassword(rs.getString("password"));
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return to;
+
+	}
+	
+	public void excluir(Usuario to) {
+		String sqlDelete = "DELETE FROM usuario where username = ?";
+
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
+			stm.setString(1, to.getUsername());
+			stm.execute();
+
+			conn.close();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
